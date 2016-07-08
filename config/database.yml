@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  database: paper_rhino_development
+  username: paper_rhino
+
+test:
+  adapter: postgresql
+  database: paper_rhino_development
+  username: paper_rhino

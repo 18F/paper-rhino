@@ -1,0 +1,16 @@
+//= require bootstrap
+//= require bootstrap-sprockets
+//= require bootstrap-datepicker
+
+//= require font-awesome/font-awesome
+
+//= require_tree .
+//= require_self
+
+body {
+  padding-top: 70px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,12 @@
+<h1 class="page-header">Upload</h1>
+
+<%= form_for :document, url: upload_path do |f| %>
+  <div class="form-group">
+    <%= f.attachment_field :attachment %>
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    <i class="fa fa-fw fa-cloud-upload"></i>
+    Upload
+  </button>
+<% end %>
