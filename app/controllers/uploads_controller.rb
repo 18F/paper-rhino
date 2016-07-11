@@ -6,7 +6,7 @@ class UploadsController < ApplicationController
     @document = Document.new(params.require(:document).permit(:attachment))
 
     if @document.save
-      render text: "Great!"
+      redirect_to edit_document_path(@document.id)
     else
       render text: "Oh No!"
     end

@@ -14,3 +14,6 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.pdfobject-container { height: 800px;}
+.pdfobject { border: 1px solid #666; }

@@ -1,0 +1,18 @@
+<h3 class="page-header"><%= @document.attachment_name %></h3>
+
+<dl>
+  <dt>Document Link</dt>
+  <dd><%= link_to "Download", attachment_url(@document, :attachment) %></dd>
+  <dt>Document Tags</dt>
+  <dd>
+    <% @document.attachment_tags.each do |tag| %>
+      <span class="label label-primary"><%= tag %></span>
+    <% end %>
+  </dd>
+</dl>
+
+<div id="attachment-pdf"></div>
+
+<script type="text/javascript">
+  PDFObject.embed("<%= attachment_url(@document, :attachment) %>", "#attachment-pdf");
+</script>

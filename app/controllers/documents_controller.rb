@@ -2,9 +2,11 @@ class DocumentsController < ApplicationController
   def index
   end
 
-  def search
+  def show
+    @document = Document.find(params[:id])
   end
 
-  def upload
+  def edit
+    @document = Document.find(params[:id])
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708213059) do
+ActiveRecord::Schema.define(version: 20160711172324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20160708213059) do
     t.string   "attachment_content_type"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "attachment_name"
+    t.string   "attachment_tags",                      array: true
+    t.string   "attachment_pages",                     array: true
+    t.tsvector "attachment_tsterms"
+    t.index ["attachment_tsterms"], name: "documents_attachment_tsterms_idx", using: :gin
   end
 
 end
