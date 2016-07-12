@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 20160711172324) do
     t.string   "attachment_content_type"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "attachment_fingerprint"
     t.string   "attachment_name"
     t.string   "attachment_tags",                      array: true
     t.string   "attachment_pages",                     array: true
     t.tsvector "attachment_tsterms"
+    t.index ["attachment_fingerprint"], name: "documents_attachment_fingerprint_idx", unique: true, using: :btree
     t.index ["attachment_tsterms"], name: "documents_attachment_tsterms_idx", using: :gin
   end
 

@@ -1,1 +1,26 @@
-<h1 class="page-header">@document.attachment_name</h1>
+<h3 class="page-header"><%= @document.attachment_name %></h3>
+
+<dl>
+  <dt>Document Link</dt>
+  <dd><%= link_to "Download", attachment_url(@document, :attachment) %></dd>
+
+  <% if @document.attachment_size.present? %>
+    <dt>Document Size</dt>
+    <dd><%= number_to_human_size @document.attachment_size %></dd>
+  <% end %>
+
+  <% if @document.attachment_tags.present? %>
+    <dt>Document Tags</dt>
+    <dd>
+      <% @document.attachment_tags.each do |tag| %>
+        <span class="label label-primary"><%= tag %></span>
+      <% end %>
+    </dd>
+  <% end %>
+</dl>
+
+<div id="attachment-pdf"></div>
+
+<script type="text/javascript">
+  PDFObject.embed("<%= attachment_url(@document, :attachment) %>", "#attachment-pdf");
+</script>

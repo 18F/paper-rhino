@@ -4,9 +4,16 @@ class Document < ApplicationRecord
   before_save :add_attachment_data
 
   def add_attachment_data
-    reader = PDF::Reader.new(self.attachment.to_io)
+    attachment_io = self.attachment.to_io
 
-    self.attachment_name = reader.info[:Title].try(:strip)
+    reader = PDF::Reader.new(attachment_io)
+
+    # might be set by filename
+    if title = reader.info[:Title]
+      self.attachment_name = title.strip
+    end
+
+    self.attachment_fingerprint = Digest::SHA256.hexdigest(attachment_io.read)
     self.attachment_tags = reader.info[:Keywords].try(:strip).try(:split, ',').try(:map) { |tag|
       tag.strip
     }

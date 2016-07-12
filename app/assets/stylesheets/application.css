@@ -15,5 +15,17 @@ body {
   cursor: pointer;
 }
 
-.pdfobject-container { height: 800px;}
-.pdfobject { border: 1px solid #666; }
+.pdfobject-container {
+  height: 800px;
+}
+.pdfobject {
+  border: 1px solid #666;
+}
+
+#search-results b {
+  background-color: yellow;
+}
+
+dd {
+  padding-bottom: 7px;
+}

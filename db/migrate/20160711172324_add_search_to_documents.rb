@@ -1,12 +1,14 @@
 class AddSearchToDocuments < ActiveRecord::Migration[5.0]
   def up
     execute <<-SQL.strip
+      alter table documents add column attachment_fingerprint varchar;
       alter table documents add column attachment_name varchar;
       alter table documents add column attachment_tags varchar[];
       alter table documents add column attachment_pages varchar[];
 
       alter table documents add column attachment_tsterms tsvector;
       create index documents_attachment_tsterms_idx on documents USING gin(attachment_tsterms);
+      create unique index documents_attachment_fingerprint_idx on documents(attachment_fingerprint);
 
       create function documents_attachment_tsterms_tfun() returns trigger as $$
       begin
@@ -33,6 +35,7 @@ class AddSearchToDocuments < ActiveRecord::Migration[5.0]
     execute <<-SQL.strip
       drop trigger if exists documents_attachment_tsterms_trig on documents;
       drop function if exists documents_attachment_tsterms_tfun();
+      alter table documents drop column attachment_fingerprint;
       alter table documents drop column attachment_name;
       alter table documents drop column attachment_tags;
       alter table documents drop column attachment_pages;

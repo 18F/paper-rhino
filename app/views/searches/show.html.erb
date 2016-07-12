@@ -1,0 +1,12 @@
+<%= render partial: 'search', locals: {term: @term} %>
+
+<div id="search-results">
+  <% @results.each do |result| %>
+
+    <h3 class="page-header">
+      <a href="<%= document_path(result['id']) %>"><%= raw result['headlined_name'] %></a>
+      <i><%= result['search_rank'] %></i>
+    </h3>
+    <p><%= raw result['headlined_pages'] %></p>
+  <% end %>
+</div>
